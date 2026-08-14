@@ -42,7 +42,6 @@ public class OVRExternalComposition : OVRComposition
 	public Camera foregroundCamera = null;
 	public GameObject backgroundCameraGameObject = null;
 	public Camera backgroundCamera = null;
-#if OVR_ANDROID_MRC
 	private bool skipFrame = false;
 	private float fpsThreshold = 80.0f;
 	private bool isFrameSkipped = true;
@@ -58,7 +57,7 @@ public class OVRExternalComposition : OVRComposition
 
 	// this is used for moving MRC camera where we would need to be able to synchronize the camera position from the game with that on the client for composition
 	public double[] cameraPoseTimeArray = new double[2];
-#endif
+
 
 	public override OVRManager.CompositionMethod CompositionMethod() { return OVRManager.CompositionMethod.External; }
 
@@ -555,7 +554,6 @@ public class OVRExternalComposition : OVRComposition
 
 }
 
-#if OVR_ANDROID_MRC
 
 public class OVRMRAudioFilter : MonoBehaviour
 {
@@ -579,6 +577,5 @@ public class OVRMRAudioFilter : MonoBehaviour
 		}
 	}
 }
-#endif
 
 #endif

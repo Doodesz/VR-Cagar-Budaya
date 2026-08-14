@@ -42,7 +42,7 @@ public class OVRDeviceSelector
 #if PRIORITIZE_OCULUS_XR_SETTINGS
 			OculusSettings settings;
 			UnityEditor.EditorBuildSettings.TryGetConfigObject<OculusSettings>("Unity.XR.Oculus.Settings", out settings);
-			return settings.TargetQuest;
+			return false; // TargetQuest is no longer supported in newer Oculus XR Plugin versions
 #else
 			OVRProjectConfig projectConfig = OVRProjectConfig.GetProjectConfig();
 			return projectConfig.targetDeviceTypes.Contains(OVRProjectConfig.DeviceType.Quest);

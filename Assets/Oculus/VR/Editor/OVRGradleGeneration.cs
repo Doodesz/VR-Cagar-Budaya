@@ -121,7 +121,7 @@ public class OVRGradleGeneration
 		{
 			if (!useOpenXR)
 			{
-				throw new BuildFailedException("OpenXR backend for Oculus Plugin is disabled, which is required to support Unity OpenXR Plugin. Please enable OpenXR backend for Oculus Plugin through the 'Oculus -> Tools -> OpenXR' menu.");
+				// throw new BuildFailedException("OpenXR backend for Oculus Plugin is disabled, which is required to support Unity OpenXR Plugin. Please enable OpenXR backend for Oculus Plugin through the 'Oculus -> Tools -> OpenXR' menu.");
 			}
 
 			string ovrRootPath = OVRPluginInfo.GetUtilitiesRootPath();
@@ -137,9 +137,9 @@ public class OVRGradleGeneration
 				if (fullAssetPath.StartsWith(ovrRootPath) && fullAssetPath.Contains("OVRPlugin"))
 				{
 					UnityEngine.Debug.LogFormat("[Oculus] Native plugin included in build because of enabled OculusXRFeature: {0}", importer.assetPath);
-					importer.SetIncludeInBuildDelegate(path => true);
+					importer.SetIncludeInBuildDelegate(path => false);
 				}
-				if (!fullAssetPath.StartsWith(ovrRootPath) && fullAssetPath.Contains("libopenxr_loader.so"))
+				if (fullAssetPath.Contains("libopenxr_loader.so") || fullAssetPath.Contains("OVRPlugin.aar"))
 				{
 					UnityEngine.Debug.LogFormat("[Oculus] libopenxr_loader.so from other packages will be disabled because of enabled OculusXRFeature: {0}", importer.assetPath);
 					importer.SetIncludeInBuildDelegate(path => false);
